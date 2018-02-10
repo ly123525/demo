@@ -1,0 +1,44 @@
+<% unless @user.errors.empty? %>
+    <div class="alert alert-danger">
+      <ul>
+        <% @user.errors.messages.values.flatten.each do |error| %>
+            <li><%= error %></li>
+        <% end -%>
+      </ul>
+    </div>
+<% end -%>
+<div class="panel panel-default sign_up_container">
+  <div class="panel-heading text-center">用户注册</div>
+  <div class="panel-body">
+    <input type="hidden" name="signup_type" value="<%= @is_using_email ? "email" : 'cellphone' %>" />
+    <%= form_for @user do |f| %>
+    <div class="form-group email-inner <%= @is_using_email ? '' : 'hide' %>">
+        <%= f.label :email, '邮箱*' %>
+        <%= link_to "使用手机号", 'javascript:;', class: "switch-btn" %>
+        <%= f.text_field :email, class: 'form-control' %>
+    </div>
+    <div class="form-group  cellphone-inner <%= @is_using_email ? 'hide' : '' %>">
+        <%= f.label :cellphone, '手机号*' %>
+        <%= link_to "使用邮箱", 'javascript:;', class: "switch-btn" %>
+        <%= f.text_field :cellphone, class:'form-control' %>
+    </div>
+    <div class="form-group  cellphone-inner <%= @is_using_email ? 'hide' : '' %>">
+      <div class="col-sm-6">
+      <%= f.text_field :token, class:'form-control', placeholder:'手机验证码' %>
+      </div>
+      <div class="col-sm-6">
+        <input type="button" value="获取验证码" class="btn btn-warning  fetch-token-btn" data-url="<%=cellphone_tokens_path %>"/>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :password, '密码*' %>
+      <%= f.password_field :password, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :password_confirmation, '确认密码*' %>
+      <%= f.password_field :password_confirmation, class: 'form-control' %>
+    </div>
+    <%= f.submit '注册', class:'btn btn-success btn-block' %>
+  <% end %>
+  </div>
+</div>
