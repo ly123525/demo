@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>后台管理--Rshop</title>
+  <%= csrf_meta_tags %>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <%= stylesheet_link_tag 'admin', media: 'all' %>
+  <%= yield :stylesheets %>
+</head>
+
+<body>
+<%= render 'admin/layouts/menu'  %>
+<div class="container">
+  <% unless flash[:notice].blank? %>
+      <div class="alert alert-success"><%= flash[:notice] %></div>
+  <% end %>
+  <% unless flash[:alert].blank? %>
+      <div class="alert alert-danger"><%= flash[:alert] %></div>
+  <% end %>
+  <%= yield %>
+</div>
+<%= javascript_include_tag 'admin' %>
+<%= yield :scripts %>
+</body>
+</html>

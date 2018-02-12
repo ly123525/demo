@@ -1,0 +1,11 @@
+.sign_up_container{
+  max-width: 300px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300px;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+  box-shadow: 2px 2px 2px #999999;
+}

@@ -10,15 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180210034305) do
+ActiveRecord::Schema.define(version: 20180211115103) do
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email"
     t.string   "crypted_password"
     t.string   "salt"
     t.string   "cellphone"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
     t.string   "activation_state"
     t.string   "activation_token"
     t.datetime "activation_token_expires_at"
@@ -27,9 +27,13 @@ ActiveRecord::Schema.define(version: 20180210034305) do
     t.string   "reset_password_token"
     t.datetime "reset_password_token_expires_at"
     t.datetime "reset_password_email_sent_at"
+    t.boolean  "is_admin",                        default: false
+    t.string   "access_token"
+    t.index ["access_token"], name: "index_users_on_access_token", unique: true, using: :btree
     t.index ["activation_token"], name: "index_users_on_activation_token", using: :btree
     t.index ["cellphone"], name: "index_users_on_cellphone", using: :btree
     t.index ["email"], name: "index_users_on_email", using: :btree
+    t.index ["is_admin"], name: "index_users_on_is_admin", using: :btree
     t.index ["remember_me_token"], name: "index_users_on_remember_me_token", using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", using: :btree
   end

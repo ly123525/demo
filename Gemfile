@@ -1,5 +1,5 @@
 # source 'https://rubygems.org'
-source 'https://gems.ruby-china.rog'
+source 'https://gems.ruby-china.org'
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
   "https://github.com/#{repo_name}.git"
@@ -53,3 +53,7 @@ gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
 gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.3'
 
 gem 'sorcery', '~> 0.11.0'
+gem 'grape', '~> 1.0', '>= 1.0.2'
+gem 'grape-swagger', '~> 0.28.0'
+gem 'grape-swagger-rails', '~> 0.3.0'
+gem 'grape_on_rails_routes', '~> 0.3.2'

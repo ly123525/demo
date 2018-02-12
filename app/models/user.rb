@@ -14,7 +14,14 @@ class User < ApplicationRecord
   def username
     self.email.blank? ? self.cellphone : self.email.split('@').first
   end
+
+  before_create :set_access_token
+
   private
+  def set_access_token
+    self.access_token = RandomCode.generate_utoken(32)
+  end
+
   def validate_email_or_cellphone
     if[self.email, self.cellphone].all?{|attr| attr.nil?}
       self.errors.add :base, "邮箱和手机号其中之一不能为空"
